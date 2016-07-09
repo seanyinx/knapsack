@@ -38,5 +38,14 @@ class KnapsackOptimizationTest extends WordSpec with ShouldMatchers {
 
       selected should contain only ((5, 3), (1, 3), (4, 6))
     }
+
+    "select any candidates which fit into knapsack from lots of elements" in {
+      val elements: Map[Int, Int] = (1 to 15).map(a => (a, a)).toMap
+
+      val selected: Map[Int, Int] = optimization.select(elements)
+
+      selected.keys.sum shouldBe 10
+      selected.values.sum shouldBe 10
+    }
   }
 }
